@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 检查按钮是否存在
     if (button) {
         // 设置按钮的背景图片
-        button.style.backgroundImage = 'url("https://raw.githubusercontent.com/loupo233/loupo233.github.io/main/image/tt.png")';
+        button.style.backgroundImage = 'url("https://loupo233.github.io/tt.png")';
         button.style.backgroundSize = 'cover'; // 背景图片覆盖按钮
         button.style.backgroundPosition = 'center'; // 居中显示图片
         button.style.backgroundRepeat = 'no-repeat'; // 防止图片重复
