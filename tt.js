@@ -15,6 +15,18 @@ if (typeof bcModSdk === "undefined") {
         console.log(player.name, args[0]); 
         return next(args);
     });
-
+    function parseMessage(message) {
+        const regex = /^(.+?) \[(.+?)\] 进来了\.$/;  // 正则匹配
+        const match = message.match(regex);
+        
+        if (match) {
+            const name = match[1];       // 获取 name
+            const nickname = match[2];   // 获取 nickname
+            return { name, nickname };
+        } else {
+            return null;  // 如果不匹配，返回 null
+        }
+    }
+    
     console.log("MyMod 加载完成！");
 }
