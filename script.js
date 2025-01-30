@@ -5,11 +5,18 @@
         return new Promise((resolve, reject) => {
             const script = document.createElement("script");
             script.src = `${url}?timestamp=${new Date().getTime()}`; // 防止缓存
-            script.onload = resolve;
-            script.onerror = reject;
+            script.onload = () => {
+                console.log(`✅ Loaded: ${url}`);
+                resolve(url);
+            };
+            script.onerror = (error) => {
+                console.error(`❌ Failed to load: ${url}`, error);
+                reject(error);
+            };
             document.head.appendChild(script);
         });
     }
+    
 
     // 这里列出所有需要加载的 JS 文件
     const scripts = [
