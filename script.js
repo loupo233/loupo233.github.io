@@ -16,11 +16,12 @@ function loadScript(url, isModule = false) {
 }
 
 // 需要加载的 JS 文件列表
-const scripts = [
-    "https://loupo233.github.io/apis.js",
-    "https://loupo233.github.io/tt.js",
-];
 
+const scripts = [
+        { url:"https://loupo233.github.io/apis.js", isModule: false },  // 确保 URL 正确
+        { url: "https://loupo233.github.io/tt.js", isModule: true }  // 确保 URL 正确
+];
+ 
 // 依次加载所有 JS 文件
 
 (async () => {
