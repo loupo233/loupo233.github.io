@@ -14,8 +14,7 @@
     // 这里列出所有需要加载的 JS 文件
     const scripts = [
         "https://loupo233.github.io/t1.js",
-        "https://loupo233.github.io/t2.js",
-        "https://loupo233.github.io/t3.js"
+       
     ];
 
     // 依次加载所有 JS 文件
