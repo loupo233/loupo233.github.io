@@ -2,7 +2,7 @@ function loadScript(url, isModule = false) {
     return new Promise((resolve, reject) => {
         const script = document.createElement("script");
         script.src = `${url}?timestamp=${new Date().getTime()}`; // 防止缓存
-        if (isModule) script.type = "module"; // 让浏览器按 ES Module 解析
+        if (isModule) script.type = "module"; // 设置为 ES 模块
         script.onload = () => {
             console.log(`✅ Loaded: ${url}`);
             resolve(url);
