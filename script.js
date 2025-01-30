@@ -1,7 +1,8 @@
-function loadScript(url) {
+function loadScript(url, isModule = false) {
     return new Promise((resolve, reject) => {
         const script = document.createElement("script");
         script.src = `${url}?timestamp=${new Date().getTime()}`; // 防止缓存
+        if (isModule) script.type = "module"; // 让浏览器按 ES Module 解析
         script.onload = () => {
             console.log(`✅ Loaded: ${url}`);
             resolve(url);
@@ -21,12 +22,13 @@ const scripts = [
 ];
 
 // 依次加载所有 JS 文件
+
 (async () => {
-    for (const script of scripts) {
+    for (const { url, isModule } of scripts) {
         try {
-            await loadScript(script);
+            await loadScript(url, isModule);
         } catch (error) {
-            console.warn(`⚠️ Skipping ${script} due to an error.`);
+            console.warn(`⚠️ Skipping ${url} due to an error.`);
         }
     }
 })();
