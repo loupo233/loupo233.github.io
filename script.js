@@ -16,7 +16,7 @@ function loadScript(url) {
 
 // 需要加载的 JS 文件列表
 const scripts = [
-    "https://loupo233.github.io/t1.js",
+    "https://loupo233.github.io/tt.js",
 ];
 
 // 依次加载所有 JS 文件
