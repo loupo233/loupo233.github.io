@@ -1,17 +1,19 @@
-if (typeof bcModSdk === "undefined") {
+(async function waitForModSDK() {
+    while (typeof bcModSdk === "undefined") {
         console.log("等待 Mod SDK 加载...");
+        await new Promise(resolve => setTimeout(resolve, 100)); // 100ms 轮询
+    }
+
     console.log("Mod SDK 版本:", bcModSdk.version);
-    // 注册 Mod
+
     const myMod = bcModSdk.registerMod({
         name: "测试",
         fullName: "loupo的代码测试",
         version: "0.0.1",
     });
-    console.log("已注册 Mod:", myMod);
-} else {
-    console.error("Mod SDK 未加载");
-}
 
+    console.log("已注册 Mod:", myMod);
+})();
     // Hook 一个函数（拦截）
     myMod.hookFunction("chatroommessage", 10, (args, next) => {
         const message = args[0];  // 获取聊天消息内容
