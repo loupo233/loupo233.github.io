@@ -1,3 +1,4 @@
+let myMod;
 (async function waitForModSDK() {
     while (typeof bcModSdk === "undefined") {
         console.log("等待 Mod SDK 加载...");
