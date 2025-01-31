@@ -13,8 +13,8 @@ if (typeof bcModSdk === "undefined") {
 }
 
     // Hook 一个函数（拦截）
-    myMod.hookFunction("ChatRoomMessage", 10, (args, next) => {
-        const message = args[0];  // 获取消息内容
+    myMod.hookFunction("chatroommessage", 10, (args, next) => {
+        const message = args[0];  // 获取聊天消息内容
         const joinRegex = /^(.+?) \[(.+?)\] 进来了\.$/;  // 匹配 "nickname [name] 进来了."
     
         const match = message.match(joinRegex);
@@ -24,9 +24,21 @@ if (typeof bcModSdk === "undefined") {
     
             console.log(`检测到新用户: ${nickname} (${name})`);
     
-            // 发送欢迎消息
-            myMod.callOriginal("SendMessage", [`欢迎 ${nickname} !`]);
+            // 使用 ServerSend 发送全局欢迎消息
+            括号消息(`欢迎 ${nickname} !`);
         }
     
         return next(args);  // 继续执行原始逻辑
     });
+    
+    // 发送消息的函数
+    括号消息 = (text) => {
+        ServerSend("ChatRoomChat", {
+            Content: "Beep",
+            Type: "Action",
+            Dictionary: [
+                { Tag: "发送私聊", Text: "修改" }, // 这条必须有，不然不会显示
+                { Tag: "修改", Text: text },      // 显示真正的文本
+            ],
+        });
+    };
