@@ -25,7 +25,7 @@ if (typeof bcModSdk === "undefined") {
             console.log(`检测到新用户: ${nickname} (${name})`);
     
             // 发送欢迎消息
-            bcModSdk.api.callOriginal("sendMessage", [`欢迎 ${nickname} !`]);
+            myMod.callOriginal("sendMessage", [`欢迎 ${nickname} !`]);
         }
     
         return next(args);  // 继续执行原始逻辑
