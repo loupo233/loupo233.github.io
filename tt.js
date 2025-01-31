@@ -1,4 +1,3 @@
-
 if (typeof bcModSdk === "undefined") {
     console.log("Mod SDK 版本:", bcModSdk.version);
     // 注册 Mod
@@ -24,21 +23,17 @@ if (typeof bcModSdk === "undefined") {
     
             console.log(`检测到新用户: ${nickname} (${name})`);
     
-            // 使用 ServerSend 发送全局欢迎消息
-            括号消息(`欢迎 ${nickname} !`);
+            // 使用 StarMessage 发送全局欢迎消息
+            StarMessage(`欢迎 ${nickname} !`);
         }
     
         return next(args);  // 继续执行原始逻辑
     });
     
-    // 发送消息的函数
-    括号消息 = (text) => {
-        ServerSend("ChatRoomChat", {
-            Content: "Beep",
-            Type: "Action",
-            Dictionary: [
-                { Tag: "发送私聊", Text: "修改" }, // 这条必须有，不然不会显示
-                { Tag: "修改", Text: text },      // 显示真正的文本
-            ],
-        });
-    };
+   // 发送消息的函数（使用 *Emote* 类型）
+StarMessage = (text) => { 
+    ServerSend("ChatRoomChat", {
+        Content: `${text}`,
+        Type: "Emote",
+    });
+};
