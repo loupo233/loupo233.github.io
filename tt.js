@@ -1,32 +1,32 @@
-if (typeof bcModSdk === "undefined") {
-    console.error("bcModSdk 未加载，请检查 mod-sdk.js 是否正确引入！");
-} else {
-    console.log("bcModSdk 版本:", bcModSdk.version);
 
+if (typeof bcModSdk === "undefined") {
+    console.log("Mod SDK 版本:", bcModSdk.version);
     // 注册 Mod
     const myMod = bcModSdk.registerMod({
         name: "测试",
         fullName: "loupo的代码测试",
         version: "0.0.1",
     });
+    console.log("已注册 Mod:", myMod);
+} else {
+    console.error("Mod SDK 未加载");
+}
 
     // Hook 一个函数（拦截）
-    myMod.hookFunction("ChatMessage", 10, (args, next) => {
-        console.log(player.name, args[0]); 
-        return next(args);
-    });
-    function parseMessage(message) {
-        const regex = /^(.+?) \[(.+?)\] 进来了\.$/;  // 正则匹配
-        const match = message.match(regex);
-        
-        if (match) {
-            const name = match[1];       // 获取 name
-            const nickname = match[2];   // 获取 nickname
-            return { name, nickname };
-        } else {
-            return null;  // 如果不匹配，返回 null
-        }
-    }
+    myMod.hookFunction("chatroommessage", 10, (args, next) => {
+        const message = args[0];  // 获取消息内容
+        const joinRegex = /^(.+?) \[(.+?)\] 进来了\.$/;  // 匹配 "nickname [name] 进来了."
     
-    console.log("MyMod 加载完成！");
-}
+        const match = message.match(joinRegex);
+        if (match) {
+            const nickname = match[1];
+            const name = match[2];
+    
+            console.log(`检测到新用户: ${nickname} (${name})`);
+    
+            // 发送欢迎消息
+            bcModSdk.api.callOriginal("sendMessage", [`欢迎 ${nickname} !`]);
+        }
+    
+        return next(args);  // 继续执行原始逻辑
+    });
