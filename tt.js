@@ -1,4 +1,5 @@
 if (typeof bcModSdk === "undefined") {
+        console.log("等待 Mod SDK 加载...");
     console.log("Mod SDK 版本:", bcModSdk.version);
     // 注册 Mod
     const myMod = bcModSdk.registerMod({
