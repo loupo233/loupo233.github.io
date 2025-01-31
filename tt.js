@@ -13,7 +13,7 @@ if (typeof bcModSdk === "undefined") {
 }
 
     // Hook 一个函数（拦截）
-    myMod.hookFunction("chatroommessage", 10, (args, next) => {
+    myMod.hookFunction("ChatRoomMessage", 10, (args, next) => {
         const message = args[0];  // 获取消息内容
         const joinRegex = /^(.+?) \[(.+?)\] 进来了\.$/;  // 匹配 "nickname [name] 进来了."
     
@@ -25,7 +25,7 @@ if (typeof bcModSdk === "undefined") {
             console.log(`检测到新用户: ${nickname} (${name})`);
     
             // 发送欢迎消息
-            myMod.callOriginal("sendMessage", [`欢迎 ${nickname} !`]);
+            myMod.callOriginal("SendMessage", [`欢迎 ${nickname} !`]);
         }
     
         return next(args);  // 继续执行原始逻辑
