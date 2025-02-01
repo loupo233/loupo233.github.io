@@ -27,8 +27,8 @@ if (myMod) {
 
             // 发送欢迎消
         StarMessage = (text) => {
-            ServerSend(`欢迎 ${nickname} !`, {
-                Content: `${text}`,
+            ServerSend(`ChatRoomChat`, {
+                Content: `欢迎 ${nickname} !`,
                 Type: "Emote",
             })
         };
