@@ -6,17 +6,17 @@ if (typeof window.bcModSdk !== "undefined") {
         fullName: "loupo的代码测试",
         version: "0.0.1",
     });
-    const StarMessage = (text) => {
-        ServerSend("ChatRoomChat", {
-            Content: `${text}`,
-            Type: "Emote",
-        })
-    };
+    
     console.log("已注册 Mod:", myMod);
 } else {
     console.error("Mod SDK 未加载");
 }
-
+const StarMessage = (text) => {
+    ServerSend("ChatRoomChat", {
+        Content: `${text}`,
+        Type: "Emote",
+    })
+};
 // myMod.hookFunction("ChatRoomMessage", 0, (args, next) => {
 //     let data1 = args[0];
 //     // Sender // 玩家名字 是数字类型
