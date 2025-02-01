@@ -1,4 +1,3 @@
-let myMod;
 if (typeof window.bcModSdk !== "undefined") {
     console.log("Mod SDK 版本:", window.bcModSdk.version);
     
