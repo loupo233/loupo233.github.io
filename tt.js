@@ -29,9 +29,13 @@ myMod.hookFunction("ChatRoomMessage", 0, (args, next) => {
 myMod.hookFunction("ChatRoomMessage", 0, (args, next) => {
     let data = args[0];
     if(data.Sender!='160609'){
+
         if (data.Sender === Player.MemberNumber && data.Type === 'Action' && data.Content === 'ServerEnter') {
         StarMessage(data.Sender+ ",欢迎光临此小窝");
         console.log("发送成功");
+    }
+    else {
+        console.log("本人测试成功");
     }
 }
     next(args);
