@@ -25,10 +25,16 @@ if (myMod) {
 
             console.log(`检测到新用户: ${nickname} (${name})`);
 
-            // 发送欢迎消息
-            StarMessage(`欢迎 ${nickname} !`);
-        }
+            // 发送欢迎消
+        StarMessage = (text) => {
+            ServerSend(`欢迎 ${nickname} !`, {
+                Content: `${text}`,
+                Type: "Emote",
+            })
+        };
+    }
 
         return next(args);  
     });
+
 }
