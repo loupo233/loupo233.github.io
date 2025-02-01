@@ -7,7 +7,7 @@ if (typeof window.bcModSdk !== "undefined") {
         version: "0.0.1",
     });
     const StarMessage = (text) => {
-        ServerSend("ChatRoomChat", {
+        myMod.ServerSend("ChatRoomChat", {
             Content: `${text}`,
             Type: "Emote",
         })
@@ -16,6 +16,7 @@ if (typeof window.bcModSdk !== "undefined") {
 } else {
     console.error("Mod SDK 未加载");
 }
+
 myMod.hookFunction("ChatRoomMessage", 0, (args, next) => {
     if(myMod.data.Sender!='160609'){
         if (myMod.data.Sender === myMod.Player.MemberNumber && myMod.data.Type === 'Action' && myMod.data.Content === '"ServerEnter"') {
