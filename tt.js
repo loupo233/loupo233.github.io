@@ -12,29 +12,30 @@ if (typeof window.bcModSdk !== "undefined") {
 } else {
     console.error("Mod SDK 未加载");
 }
-
-if (myMod) {
-    myMod.hookFunction("ChatRoomMessage", 10, (args, next) => {
-        const message = args[0];  
-        const joinRegex = /^(.+?) \[(.+?)\] 进来了\.$/;  
+myMod.hookFunction("ChatRoomMessage", 10, (args, next) => {
+    const messageData = args[0];  
     
-        const match = message.match(joinRegex);
-        if (match) {
-            const nickname = match[1];
-            const name = match[2];
-
-            console.log(`检测到新用户: ${nickname} (${name})`);
-
-            // 发送欢迎消
-        StarMessage = (text) => {
-            ServerSend(`ChatRoomChat`, {
-                Content: `欢迎 ${nickname} !`,
-                Type: "Emote",
-            })
-        };
+    // 确保 messageData 存在并且是字符串
+    if (!messageData || typeof messageData !== "string") {
+        console.error("无效的消息数据:", messageData);
+        return next(args);
     }
 
-        return next(args);  
-    });
+    const joinRegex = /^(.+?) \[(.+?)\] 进来了\.$/;  
+    const match = messageData.match(joinRegex);
 
-}
+    if (match) {
+        const nickname = match[1];
+        const name = match[2];
+
+        console.log(`检测到新用户: ${nickname} (${name})`);
+
+        // 发送欢迎消息
+        ServerSend("ChatRoomChat", {
+            Content: `欢迎 ${nickname} !`,
+            Type: "Emote",
+        });
+    }
+
+    return next(args);
+});
