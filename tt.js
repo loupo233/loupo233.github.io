@@ -12,7 +12,7 @@ if (typeof window.bcModSdk !== "undefined") {
     console.error("Mod SDK 未加载");
 }
 const StarMessage = (text) => {
-    myMod.ServerSend("ChatRoomChat", {
+    ServerSend("ChatRoomChat", {
         Content: `${text}`,
         Type: "Emote",
     })
