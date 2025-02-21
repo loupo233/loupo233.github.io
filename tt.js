@@ -32,7 +32,7 @@ myMod.hookFunction("ChatRoomMessage", 10, (args, next) => {
 
         // console.log(Player.MemberNumber);
         if (data.Sender  && data.Type === 'Action' && data.Content === 'ServerEnter') {
-        StarMessage(data.Sender.name+ ",欢迎光临此小窝");
+        StarMessage(data.Sender.fullName+ ",欢迎光临此小窝");
         console.log("发送成功");
     }
     
