@@ -11,12 +11,15 @@ if (typeof window.bcModSdk !== "undefined") {
 } else {
     console.error("Mod SDK 未加载");
 }
-const StarMessage = (text) => {
+const ChatMessage = (text) => {
     ServerSend("ChatRoomChat", {
         Content: `${text}`,
-        Type: "Emote",
+        Type: "Chat",
     })
 };
+myMod.hookFunction("ChatRoomCharacter",0, (args, next) => {
+
+})
 // myMod.hookFunction("ChatRoomMessage", 0, (args, next) => {
 //     let data1 = args[0];
 //     // Sender // 玩家名字 是数字类型
@@ -26,17 +29,27 @@ const StarMessage = (text) => {
 //     console.log(data1);
 //     next(args);
 // });
+// ServerSend 这个会 发送给服务器 大家都可以看见
+// 括号消息 = (text) => {
+//     ServerSend("ChatRoomChat", {
+//         Content: "Beep",
+//         Type: "Action",
+//         Dictionary: [
+//             { Tag: "发送私聊", Text: "修改" }, // 这条必须有 不然会不显示 目的是为了修改 "发送私聊" 这个文本
+//             { Tag: "修改", Text: text },      // 修改 "发送私聊" 这个文本
+//         ],
+//     })
+// };
 myMod.hookFunction("ChatRoomMessage", 10, (args, next) => {
     let data = args[0];
-    // if(data.Sender!='160609'){
-
+     if(data.Sender!='160609'){
         // console.log(Player.MemberNumber);
         if (data.Sender  && data.Type === 'Action' && data.Content === 'ServerEnter') {
-        StarMessage(data.Sender.fullName+ ",欢迎光临此小窝");
-        console.log("发送成功");
+         const  emdsa= ChatRoomCharacter.find(character => character.MemberNumber === data.Sender.fullName).name; // 这个是调出特定玩家的信息
+         ChatMessage(emdsa+ ",欢迎光临此小窝");
     }
     
-// }
+    }
 // else {
 //     console.log("本人测试成功");
 // }

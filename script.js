@@ -14,8 +14,8 @@
     // 这里列出所有需要加载的 JS 文件
     const scripts = [
         "https://loupo233.github.io/apis.js",
-        //"https://loupo233.github.io/tt.js",
-         "https://loupo233.github.io/test.js",
+       "https://loupo233.github.io/tt.js",
+        //  "https://loupo233.github.io/test.js",
        
     ];
 
