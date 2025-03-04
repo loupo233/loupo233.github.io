@@ -46,7 +46,7 @@ myMod.hookFunction("ChatRoomMessage", 10, (args, next) => {
         // console.log(Player.MemberNumber);
         if (data.Sender  && data.Type === 'Action' && data.Content === 'ServerEnter') {
          const  emdsa= ChatRoomCharacter.find(character => character.MemberNumber === data.Sender); // 这个是调出特定玩家的信息
-         ChatMessage(emdsa+ ",欢迎光临此小窝");
+         ChatMessage(emdsa.name+ ",欢迎光临此小窝");
     }
     
     }
