@@ -8,6 +8,7 @@ if (typeof window.bcModSdk !== "undefined") {
     });
     
     console.log("已注册 Mod:", myMod);
+    ChatMessage("loupo的mod已启用");
 } else {
     console.error("Mod SDK 未加载");
 }
