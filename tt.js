@@ -1,24 +1,21 @@
-const ChatMessage = (text) => {
-    ServerSend("ChatRoomChat", {
-        Content: `${text}`,
-        Type: "Chat",
-    })
-};
-if (typeof window.bcModSdk !== "undefined") {
+if (typeof window.bcModSdk !== "undefined") 
+    {
     console.log("Mod SDK 版本:", window.bcModSdk.version);
-    
     myMod = window.bcModSdk.registerMod({
         name: "测试",
         fullName: "loupo的代码测试",
         version: "0.0.3",
     });
-    
-    console.log("已注册 Mod:", myMod);
-    ChatMessage("loupo的mod已启用");
+    console.log("已注册 Mod:", myMod)
 } else {
     console.error("Mod SDK 未加载");
 }
-
+const ChatMessage = (text) => {
+    ServerSend("ChatRoomChat", {
+        Content: `${text}`,
+        Type: "Chat",
+    })
+}
 myMod.hookFunction("ChatRoomMessage", 11, (args, next) => {
     let data = args[0]; 
     // args[0] 就是 data 对象，包含 Sender、Type、Content 等属性
@@ -32,4 +29,5 @@ myMod.hookFunction("ChatRoomMessage", 11, (args, next) => {
         }
     
     } next(args);
+
 });
