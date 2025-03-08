@@ -15,7 +15,7 @@
     const scripts = [
         "https://loupo233.github.io/apis.js",
        "https://loupo233.github.io/tt.js",
-        //  "https://loupo233.github.io/test.js",
+      "https://loupo233.github.io/test.js"
        
     ];
 
