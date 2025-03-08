@@ -20,17 +20,16 @@ if (typeof window.bcModSdk !== "undefined") {
 }
 
 myMod.hookFunction("ChatRoomMessage", 11, (args, next) => {
-    let data = args[0];
-     if(data.Sender!='160609'){
-        // console.log(Player.MemberNumber);
-        if (data.Sender  && data.Type === 'Action' && data.Content === 'ServerEnter') {
+    let data = args[0]; 
+    // args[0] 就是 data 对象，包含 Sender、Type、Content 等属性
+     if(data.Sender!=160609)
+        // 如果 Sender 不等于 160609（注意：这里最好确保数据类型一致，比如都用数字）
+    {
+        if (data  && data.Type === 'Action' && data.Content === 'ServerEnter') 
+        {
          const  lgd= ChatRoomCharacter.find(character => character.MemberNumber === data.Sender); // 这个是调出特定玩家的信息
          ChatMessage(lgd.AccountName+ ",欢迎光临此小窝");
-    }
+        }
     
-    }
-// else {
-//     console.log("本人测试成功");
-// }
-    next(args);
+    } next(args);
 });
