@@ -4,7 +4,7 @@ if (typeof window.bcModSdk !== "undefined")
     myMod = window.bcModSdk.registerMod({
         name: "测试",
         fullName: "loupo的代码测试",
-        version: "0.0.3",
+        version: "0.0.4",
     });
     console.log("已注册 Mod:", myMod)
 } else {
@@ -24,8 +24,10 @@ myMod.hookFunction("ChatRoomMessage", 11, (args, next) => {
     {
         if (data  && data.Type === 'Action' && data.Content === 'ServerEnter') 
         {
-         const  lgd= ChatRoomCharacter.find(character => character.MemberNumber === data.Sender); // 这个是调出特定玩家的信息
-         ChatMessage(lgd.AccountName+ ",欢迎光临此小窝");
+         const  dsa= ChatRoomCharacter.find(character => character.MemberNumber === data.Sender); 
+        // 调用 CharacterNickname 得到格式化后的昵称
+         const dasnickname = CharacterNickname(dsa);
+         ChatMessage(dasnickname+ ",欢迎光临此小窝");
         }
     
     } next(args);
