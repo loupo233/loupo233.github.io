@@ -28,7 +28,7 @@ myMod.hookFunction("ChatRoomMessage", 11, (args, next) => {
         // 调用 CharacterNickname 得到格式化后的昵称
          const dasnickname = CharacterNickname(dsa);
         //  ChatMessage(dasnickname+ "(https://raw.githubusercontent.com/loupo233/loupo233.github.io/refs/heads/main/112b1a83-728e-47a3-a6d7-814602314c83.png)");
-        ChatMessage("(https://raw.githubusercontent.com/loupo233/loupo233.github.io/refs/heads/main/112b1a83-728e-47a3-a6d7-814602314c83.png)");
+        ChatMessage("(https://img.tukuppt.com/png_preview/00/27/90/9RFccq3mgb.jpg!/fw/780)");
         }
     
     } next(args);
