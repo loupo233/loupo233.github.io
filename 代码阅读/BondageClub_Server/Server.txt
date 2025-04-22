@@ -1,0 +1,324 @@
+// 第3行
+/** @type {SocketIO.Socket} */
+
+// 第6行
+/** @type { { Message: string; Timer: number; ChatRoomName?: string | null; IsMail?: boolean; } } */
+
+// 第22行
+/** 通过附加 socket 事件及其各自的回调函数来加载服务器 */
+
+// 第66行
+/** @readonly */
+
+// 第72行
+/**
+ * @private
+ * @type {Map<keyof ServerAccountUpdateRequest, any>}
+ */
+
+// 第75行
+/**
+ * @private
+ * @type {null | ReturnType<typeof setTimeout>}
+ */
+
+// 第78行
+/**
+ * @private
+ * @type {number}
+ */
+
+// 第82行
+/** 清空队列并与服务器同步 */
+
+// 第96行
+/**
+ * 将数据排队以便稍后同步
+ * @param {ServerAccountUpdateRequest} Data
+ * @param {boolean} [Force] - 强制立即同步到服务器
+ */
+
+// 第116行
+/**
+ * 设置服务器的连接状态并更新登录页面消息
+ * @param {boolean} connected - 是否已成功建立与服务器的 WebSocket 连接
+ * @param {string} [errorMessage] - 如果未连接，则显示的错误消息
+ */
+
+// 第128行
+/**
+ * 当接收到 socket 的 "connect" 事件时的回调 - 这将在初始连接和成功重新连接时调用。
+ */
+
+// 第143行
+/**
+ * 当接收到 socket 的 "reconnecting" 事件时的回调 - 这在 socket.io 在连接失败后启动重试时调用。
+ */
+
+// 第151行
+/**
+ * 用于解析接收到的与服务器相关的信息的回调
+ * @param {{OnlinePlayers: number, Time: number}} data - 包含服务器信息的数据对象
+ * @returns {void} - 无返回值
+ */
+
+// 第160行
+/**
+ * 当我们与服务器断开连接时的回调，如果用户已登录，尝试进入重新连接模式（重新登录屏幕）
+ * @param {ServerForceDisconnectMessage} [data] - 要记录的错误
+ * @param {boolean} [close=false] - 关闭传输
+ * @returns {void} - 无返回值
+ */
+
+// 第204行
+/** @typedef {{ screen?: string, callback?: () => boolean }} ServerChatRoomChecksOptions */
+
+// 第209行
+/**
+ * 包含用于确定玩家是否在聊天室中的回调的命名空间
+ * @namespace
+ * @see {@link ServerPlayerIsInChatRoom}
+ */
+
+// 第213行
+/**
+ * 所有已注册的回调，表示必须检查的不同屏幕，以确定聊天室的存在
+ * @type {((screen: string) => boolean)[]}
+ */
+
+// 第219行
+/**
+ * 注册一个或多个屏幕名称和/或回调，以确定玩家是否在聊天室中。
+ * @param {ServerChatRoomChecksOptions[]} options
+ */
+
+// 第263行
+/**
+ * 返回玩家当前是否在聊天室中或在聊天室中查看子屏幕
+ * @returns {boolean} - 如果在聊天室中则为真
+ */
+
+// 第270行
+/** 速率限制：每个间隔的最大消息数 */
+
+// 第272行
+/** 速率限制：速率限制窗口的长度，以毫秒为单位 */
+
+// 第277行
+/**
+ * 排队等待发送的消息
+ *
+ * @typedef {{ Message: ClientEvent, args: ClientEventParams<ClientEvent>}} SendRateLimitQueueItem
+ *
+ * @type {SendRateLimitQueueItem[]}
+ */
+
+// 第285行
+/** @type {number[]} */
+
+// 第288行
+/**
+ * 通过 socket.emit 发送带有给定数据的消息到服务器
+ * @type {<Ev extends import("@socket.io/component-emitter").EventNames<ClientToServerEvents>>(
+ *     ev: Ev, ...args: import("@socket.io/component-emitter").EventParams<ClientToServerEvents, Ev>
+ * ) => void}
+ */
+
+// 第299行
+/**
+ * 处理传出的服务器消息队列
+ */
+
+// 第318行
+/**
+ * 将金钱、所有者名称和恋人名称与服务器同步
+ * @returns {void} - 无返回值
+ */
+
+// 第326行
+/**
+ * 将完整的玩家库存同步到服务器。
+ * @returns {void} - 无返回值
+ */
+
+// 第336行
+/**
+ * 将所有物品权限解包为被阻止、有限、收藏和隐藏的物品对象
+ * @param {Partial<Record<`${AssetGroupName}/${string}`, ItemPermissions>>} permissionItems - 打包的物品权限数据
+ * @returns {Pick<ServerAccountUpdateRequest, "BlockItems" | "LimitedItems" | "FavoriteItems" | "HiddenItems">} - 解包的物品权限数据
+ */
+
+// 第380行
+/**
+ * 将被阻止、有限、收藏和隐藏的物品权限解包为单个对象
+ * @param {Pick<Partial<ServerAccountDataSynced>, "BlockItems" | "LimitedItems" | "FavoriteItems" | "HiddenItems">} data - 从服务器接收到的物品权限数据
+ * @param {boolean} onExtreme - 如果预期难度为极端
+ * @returns {{ permissions: Partial<Record<`${AssetGroupName}/${string}`, ItemPermissions>>; shouldSync: boolean }} - 打包的物品权限数据
+ */
+
+// 第453行
+/**
+ * 将玩家的收藏、被阻止、有限和隐藏的物品同步到服务器
+ * @returns {void} - 无返回值
+ */
+
+// 第458行
+/**
+ * 将完整的玩家日志数组同步到服务器。
+ * @returns {void} - 无返回值
+ */
+
+// 第463行
+/**
+ * 将完整的玩家声誉数组同步到服务器。
+ * @returns {void} - 无返回值
+ */
+
+// 第468行
+/**
+ * 将完整的玩家技能数组同步到服务器。
+ * @returns {void} - 无返回值
+ */
+
+// 第473行
+/**
+ * 将玩家的关系和相关信息同步到服务器。
+ * @returns {void} - 无返回值
+ */
+
+// 第487行
+/**
+ * 将 {@link Player.ExtensionSettings} 同步到服务器。
+ * @param {keyof ExtensionSettings} dataKeyName - 要同步的单个键
+ * @param {boolean} [_force] - 未使用
+ */
+
+// 第497行
+/**
+ * 准备一个外观包，以便我们可以将其推送到服务器。通过仅保留必要的信息（资产名称、组名称、颜色、属性和难度）来最小化它。
+ * @param {readonly Item[]} Appearance - 要打包的外观数组
+ * @returns {AppearanceBundle} - 从给定的外观数组创建的外观包
+ */
+
+// 第510行
+/**
+ * 从仅包含主要信息（无资产）的服务器包加载外观资产，并验证其属性以防止破坏并在多人游戏中尊重权限
+ * @param {Character} C - 要加载外观的角色
+ * @param {IAssetFamily} AssetFamily - 用于外观数组的资产系列
+ * @param {AppearanceBundle} Bundle - 打包的外观
+ * @param {number} [SourceMemberNumber] - 触发更改的用户的成员编号
+ * @param {boolean} [AppearanceFull=false] - 是否应将外观分配给 NPC 的 AppearanceFull 属性
+ * @returns {boolean} - 外观包更新是否包含无效项目
+ */
+
+// 第544行
+/**
+ * 构建一个差异映射，用于比较角色外观的更改，以资产组名称为键
+ * @param {IAssetFamily} assetFamily - 外观的资产系列
+ * @param {readonly Item[]} appearance - 要比较的当前外观
+ * @param {AppearanceBundle} bundle - 新的外观包
+ * @returns {AppearanceDiffMap} - 表示角色外观更改的外观差异映射
+ */
+
+// 第563行
+/**
+ * 将存储在服务器上并用于外观更新消息的打包外观项目映射为游戏客户端使用的完整外观项目
+ * @param {IAssetFamily} assetFamily - 外观项目的资产系列
+ * @param {ItemBundle} item - 打包的外观项目
+ * @returns {null | Item} - 提供的打包外观项目的完整外观项目表示
+ */
+
+// 第580行
+/**
+ * 解析项目颜色，基于资产上允许的可着色层和资产的颜色方案
+ * @param {Asset} asset - 设置颜色的资产
+ * @param {string | readonly string[]} color - 要解析的颜色值
+ * @param {readonly string[]} schema - 要验证的颜色方案
+ * @returns {string|string[]} - 解析的有效项目颜色
+ */
+
+// 第594行
+/**
+ * 使用任何必需的项目填充外观差异映射，以确保所有需要的资产组都存在。
+ * @param {IAssetFamily} assetFamily - 外观的资产系列
+ * @param {AppearanceDiffMap} diffMap - 要填充的外观差异映射
+ * @returns {void} - 无返回值
+ */
+
+// 第617行
+/**
+ * 验证并返回符合颜色方案的颜色
+ * @param {string} Color - 要验证的颜色
+ * @param {readonly string[]} Schema - 要验证的颜色方案（接受的颜色值列表）
+ * @returns {string} - 如果颜色是有效的十六进制颜色字符串或颜色方案的一部分，则返回颜色，否则返回颜色方案的默认颜色
+ */
+
+// 第629行
+/**
+ * 将玩家外观与服务器数据库同步。
+ *
+ * 请注意，这不会将外观更改推送到聊天室的其他部分，
+ * 这需要 {@link ChatRoomCharacterItemUpdate} 或 {@link ChatRoomCharacterUpdate}。
+ *
+ * @returns {void} - 无返回值
+ */
+
+// 第641行
+/**
+ * 将所有私人房间角色与服务器同步
+ * @returns {void} - 无返回值
+ */
+
+// 第655行
+/**
+ * 用于解析与玩家查询相关的接收到的信息的回调，例如查看他们的在线朋友或当前的电子邮件状态
+ * @param {ServerAccountQueryResponse} data - 包含查询数据的数据对象
+ * @returns {void} - 无返回值
+ */
+
+// 第671行
+/**
+ * 用于解析来自其他帐户的哔声的接收到的信息的回调
+ * @param {ServerAccountBeepResponse} data - 包含哔声对象的数据对象，该对象至少包含一个名称和一个成员编号
+ * @returns {void} - 无返回值
+ */
+
+// 第754行
+/** 如果计时器仍然有效，则绘制服务器发送的最后一个哔声，用于绘制过程 */
+
+// 第792行
+/** 处理包含邮件的哔声矩形的点击 */
+
+// 第795行
+/** 从任何屏幕打开好友列表 */
+
+// 第810行
+/**
+ * 用于解析与玩家所有权数据相关的接收到的信息的回调
+ * @param {object} data - 包含所有者名称和所有权对象的数据对象
+ * @returns {void} - 无返回值
+ */
+
+// 第832行
+/**
+ * 用于解析与玩家恋爱关系数据相关的接收到的信息的回调
+ * @param {object} data - 包含恋爱关系数组的数据对象
+ * @returns {void} - 无返回值
+ */
+
+// 第853行
+/**
+ * 比较源帐户和目标帐户以检查是否允许使用某个项目
+ *
+ * **此函数必须与服务器的相同函数匹配！**
+ * @param {Character} Source
+ * @param {Character} Target
+ * @returns {boolean}
+ */
+
+// 第882行
+/**
+ * 包含用于验证 {@link ServerAccountDataSynced} 属性的函数的命名空间，将它们转换为有效的 {@link Character} 对应项
+ * @satisfies {{ [k in keyof (ServerAccountDataSynced | Character)]?: (arg: Partial<ServerAccountDataSynced[k]>, C: Character) => Character[k] }}
+ * @namespace
+ */

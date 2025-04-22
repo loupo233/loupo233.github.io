@@ -27,7 +27,7 @@ myMod.hookFunction("ChatRoomMessage", 11, (args, next) => {
          const  dsa= ChatRoomCharacter.find(character => character.MemberNumber === data.Sender); 
         // 调用 CharacterNickname 得到格式化后的昵称
          const dasnickname = CharacterNickname(dsa);
-         ChatMessage(dasnickname+ ",欢迎光临此小窝");
+         ChatMessage(dasnickname+ "(https://raw.githubusercontent.com/loupo233/loupo233.github.io/refs/heads/main/112b1a83-728e-47a3-a6d7-814602314c83.png)");
         }
     
     } next(args);
